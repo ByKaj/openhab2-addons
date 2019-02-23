@@ -1,6 +1,7 @@
 package org.openhab.binding.plugwiseha.internal.api.models.response;
 
-import com.google.gson.annotations.SerializedName;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 
 /**
  * Response model for the Location
@@ -8,21 +9,22 @@ import com.google.gson.annotations.SerializedName;
  * @author Kaj Visser - Initial contribution
  *
  */
+@XStreamAlias("location")
 public class Location {
 
-    @SerializedName("id")
+    @XStreamAsAttribute
     private String id;
 
-    @SerializedName("name")
+    @XStreamAlias("name")
     private String name;
 
-    @SerializedName("type")
+    @XStreamAlias("type")
     private String type;
 
-    @SerializedName("preset")
+    @XStreamAlias("preset")
     private String preset;
 
-    @SerializedName("logs")
+    @XStreamAlias("logs")
     private Logs logs;
 
     public String getId() {

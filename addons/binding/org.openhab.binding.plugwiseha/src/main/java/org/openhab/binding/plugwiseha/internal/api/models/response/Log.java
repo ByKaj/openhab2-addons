@@ -1,6 +1,7 @@
 package org.openhab.binding.plugwiseha.internal.api.models.response;
 
-import com.google.gson.annotations.SerializedName;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 
 /**
  * Response model for the Log info
@@ -8,21 +9,22 @@ import com.google.gson.annotations.SerializedName;
  * @author Kaj Visser - Initial contribution
  *
  */
+@XStreamAlias("point_log")
 public class Log {
 
-    @SerializedName("id")
+    @XStreamAsAttribute
     private String id;
 
-    @SerializedName("updated_date")
+    @XStreamAlias("updated_date")
     private String updatedDate;
 
-    @SerializedName("type")
+    @XStreamAlias("type")
     private String type;
 
-    @SerializedName("unit")
+    @XStreamAlias("unit")
     private String unit;
 
-    @SerializedName("measurement")
+    @XStreamAlias("period/measurement")
     private String measurement;
 
     public String getId() {

@@ -19,6 +19,8 @@ import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.StaxDriver;
 
 public class PlugwiseHAApiAccess {
     private final Logger logger = LoggerFactory.getLogger(PlugwiseHAApiAccess.class);
@@ -28,9 +30,14 @@ public class PlugwiseHAApiAccess {
     private final HttpClient httpClient;
     private PlugwiseHAConfiguration configuration;
     private final Gson gson;
+    private final XStream xstream;
 
     public PlugwiseHAApiAccess(PlugwiseHAConfiguration configuration, HttpClient httpClient) {
+        StaxDriver driver = new StaxDriver();
+        this.xstream = new XStream(driver);
+
         this.gson = new GsonBuilder().create();
+        // this.xstream = new XStream();
         this.httpClient = httpClient;
         this.configuration = configuration;
     }
@@ -74,7 +81,8 @@ public class PlugwiseHAApiAccess {
                 String reply = response.getContentAsString();
 
                 if (outClass != null) {
-                    retVal = new Gson().fromJson(reply, outClass);
+                    // retVal = new Gson().fromJson(reply, outClass);
+                    retVal = (TOut) xstream.fromXML(reply);
                 }
             }
         } catch (InterruptedException | ExecutionException e) {

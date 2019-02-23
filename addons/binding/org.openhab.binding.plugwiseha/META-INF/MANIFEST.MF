@@ -11,6 +11,9 @@ Bundle-Version: 2.5.0.qualifier
 Import-Package: 
  com.google.gson,
  com.google.gson.annotations,
+ com.thoughtworks.xstream,
+ com.thoughtworks.xstream.annotations,
+ com.thoughtworks.xstream.io.xml,
  org.apache.commons.lang,
  org.eclipse.jdt.annotation;resolution:=optional,
  org.eclipse.jetty.client,
