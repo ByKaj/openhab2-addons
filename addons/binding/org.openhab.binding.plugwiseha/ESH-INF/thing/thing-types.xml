@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="plugwiseha"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:thing="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0"
+	xsi:schemaLocation="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0 http://eclipse.org/smarthome/schemas/thing-description-1.0.0.xsd">
+
+	<!-- Sample Thing Type -->
+	<thing-type id="sample">
+		<label>PlugwiseHA Binding Thing</label>
+		<description>Sample thing for PlugwiseHA Binding</description>
+
+		<channels>
+			<channel id="channel1" typeId="sample-channel" />
+		</channels>
+
+		<config-description>
+			<parameter name="config1" type="text" required="true">
+				<label>Sample parameter</label>
+				<description>This is a sample text configuration parameter.</description>
+			</parameter>
+		</config-description>
+
+	</thing-type>
+
+	<!-- Sample Channel Type -->
+	<channel-type id="sample-channel">
+		<item-type>Switch</item-type>
+		<label>PlugwiseHA Binding Channel</label>
+		<description>Sample channel for PlugwiseHA Binding</description>
+	</channel-type>
+
+
+	<!--Zone Thing -->
+	<thing-type id="zone">
+		<supported-bridge-type-refs>
+			<bridge-type-ref id="gateway" />
+		</supported-bridge-type-refs>
+		<label>Zone</label>
+		<description>A heating zone.</description>
+		<channels>
+		    <channel typeId="type" id="Type"></channel>
+		    <channel typeId="preset" id="Preset"></channel>
+			<channel typeId="temperature" id="Temperature"></channel>
+            <channel typeId="temperatureupdate" id="TemperatureUpdate"></channel>
+			<channel typeId="setpoint" id="SetPoint"></channel>
+			<channel typeId="setpointupdate" id="SetPointUpdate"></channel>
+			<channel typeId="mode" id="Mode"></channel>
+		</channels>
+		<config-description>
+			<parameter name="locationId" type="text" required="true" readOnly="true">
+				<label>Location ID</label>
+				<description>The location ID for the zone.</description>
+			</parameter>
+			<parameter name="locationName" type="text" required="false" readOnly="true">
+				<label>Name</label>
+				<description>The name of the zone.</description>
+			</parameter>
+		</config-description>
+	</thing-type>
+
+    <!--Home Thing -->
+    <thing-type id="home">
+        <supported-bridge-type-refs>
+            <bridge-type-ref id="gateway" />
+        </supported-bridge-type-refs>
+        <label>Home</label>
+        <description>The collection of all heating zones.</description>
+        <channels>
+            <channel typeId="preset" id="Preset"></channel>
+            <channel typeId="outdoortemperature" id="OutdoorTemperature"></channel>
+            <channel typeId="outdoorhumidity" id="OutdoorHumidity"></channel>
+            <channel typeId="solarirradiance" id="SolarirRadiance"></channel>
+            <channel typeId="windvector" id="WindVector"></channel>
+        </channels>
+        <config-description>
+            <parameter name="locationId" type="text" required="true" readOnly="true">
+                <label>Location ID</label>
+                <description>The location ID for the zone.</description>
+            </parameter>
+            <parameter name="locationName" type="text" required="false" readOnly="true">
+                <label>Name</label>
+                <description>The name of the zone.</description>
+            </parameter>
+        </config-description>
+    </thing-type>
+    
+</thing:thing-descriptions>

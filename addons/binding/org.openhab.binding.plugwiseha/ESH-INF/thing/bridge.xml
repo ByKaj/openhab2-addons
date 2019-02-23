@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="plugwiseha"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:thing="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0"
+	xsi:schemaLocation="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0 http://eclipse.org/smarthome/schemas/thing-description-1.0.0.xsd">
+
+	<!--Plugwise HA Bridge-->
+	<bridge-type id="gateway">
+		<label>Plugwise HA Bridge</label>
+		<description>The Plugwise HA Bridge is needed to connect to the Adam HA boiler gateway.</description>
+		<config-description>
+			<parameter-group name="config">
+				<label>Gateway Configuration</label>
+				<description>Contains the settings needed to connect to the Plugwise Adam HA boiler gateway.</description>
+			</parameter-group>
+			<parameter name="host" type="text" required="true" groupName="config">
+				<context>network-address</context>
+				<label>Hostname/IP</label>
+				<description>Hostname or IP address of the boiler gateway.</description>
+			</parameter>
+			<parameter name="smileId" type="text" required="true" groupName="config">
+				<context>password</context>
+				<label>Smile ID</label>
+				<description>The Smile ID is the 8 letter code on the sticker on the back of the boiler gateway.</description>
+			</parameter>
+            <parameter name="refreshInterval" type="integer" min="30" groupName="config">
+                <label>Refresh interval</label>
+                <description>Specifies the refresh interval in seconds.</description>
+                <default>120</default>
+            </parameter>
+		</config-description>
+	</bridge-type>
+
+</thing:thing-descriptions>
