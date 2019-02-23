@@ -34,10 +34,10 @@ public class PlugwiseHAApiAccess {
 
     public PlugwiseHAApiAccess(PlugwiseHAConfiguration configuration, HttpClient httpClient) {
         StaxDriver driver = new StaxDriver();
+
         this.xstream = new XStream(driver);
 
         this.gson = new GsonBuilder().create();
-        // this.xstream = new XStream();
         this.httpClient = httpClient;
         this.configuration = configuration;
     }
