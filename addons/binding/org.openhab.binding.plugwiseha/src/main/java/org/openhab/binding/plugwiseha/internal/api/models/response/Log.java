@@ -12,6 +12,7 @@ import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 @XStreamAlias("point_log")
 public class Log {
 
+    @XStreamAlias("id")
     @XStreamAsAttribute
     private String id;
 
@@ -24,8 +25,8 @@ public class Log {
     @XStreamAlias("unit")
     private String unit;
 
-    @XStreamAlias("period/measurement")
-    private String measurement;
+    @XStreamAlias("period")
+    private Period period;
 
     public String getId() {
         return id;
@@ -43,8 +44,8 @@ public class Log {
         return unit;
     }
 
-    public String getMeasurement() {
-        return measurement;
+    public Period getPeriod() {
+        return period;
     }
 
 }

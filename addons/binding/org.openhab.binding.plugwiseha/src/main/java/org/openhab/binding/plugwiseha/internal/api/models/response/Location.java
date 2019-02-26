@@ -12,6 +12,7 @@ import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 @XStreamAlias("location")
 public class Location {
 
+    @XStreamAlias("id")
     @XStreamAsAttribute
     private String id;
 
@@ -24,8 +25,15 @@ public class Location {
     @XStreamAlias("preset")
     private String preset;
 
-    @XStreamAlias("logs")
-    private Logs logs;
+    // @XStreamImplicit
+    // private Logs logs = new Logs();
+
+    public Location(String id, String name, String type, String preset) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.preset = preset;
+    }
 
     public String getId() {
         return id;
@@ -43,7 +51,7 @@ public class Location {
         return preset;
     }
 
-    public Logs getLogs() {
-        return logs;
-    }
+    // public Logs getLogs() {
+    // return logs != null ? logs : (Logs) Collections.<Log> emptyList();
+    // }
 }

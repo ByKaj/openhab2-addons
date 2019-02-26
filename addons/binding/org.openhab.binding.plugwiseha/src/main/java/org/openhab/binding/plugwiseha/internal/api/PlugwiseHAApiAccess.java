@@ -14,6 +14,9 @@ import org.eclipse.jetty.http.HttpMethod;
 import org.eclipse.jetty.http.HttpStatus;
 import org.eclipse.jetty.util.B64Code;
 import org.openhab.binding.plugwiseha.internal.PlugwiseHAConfiguration;
+import org.openhab.binding.plugwiseha.internal.api.models.response.Location;
+import org.openhab.binding.plugwiseha.internal.api.models.response.Locations;
+import org.openhab.binding.plugwiseha.internal.xml.PlugwiseHAXmlReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,11 +34,11 @@ public class PlugwiseHAApiAccess {
     private PlugwiseHAConfiguration configuration;
     private final Gson gson;
     private final XStream xstream;
+    private PlugwiseHAXmlReader xmlReader = new PlugwiseHAXmlReader();
 
     public PlugwiseHAApiAccess(PlugwiseHAConfiguration configuration, HttpClient httpClient) {
         StaxDriver driver = new StaxDriver();
         this.xstream = new XStream(driver);
-
         this.gson = new GsonBuilder().create();
         this.httpClient = httpClient;
         this.configuration = configuration;
@@ -52,6 +55,7 @@ public class PlugwiseHAApiAccess {
      * @return The result of the request or null
      * @throws TimeoutException Thrown when a request times out
      */
+    @SuppressWarnings("unchecked")
     public <TOut> TOut doRequest(HttpMethod method, String url, Map<String, String> headers, String requestData,
             String contentType, Class<TOut> outClass) throws TimeoutException {
 
@@ -81,7 +85,33 @@ public class PlugwiseHAApiAccess {
 
                 if (outClass != null) {
                     // retVal = new Gson().fromJson(reply, outClass);
-                    retVal = (TOut) xstream.fromXML(reply);
+                    // retVal = (TOut) xstream.fromXML(reply);
+                    // retVal = (TOut) this.xmlReader.readFromXML(reply);
+
+                    Locations locationsTest = new Locations();
+                    locationsTest.add(new Location("666", "Werkkamer", "office", "no_frost"));
+                    // String locationsTest = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><locations><location
+                    // id=\"666\"><name>Werkkamer</name><type>office</type><preset>no_frost</preset></location></locations>";
+
+                    // this.xstream.alias("locations", Locations.class);
+                    this.xstream.processAnnotations(
+                            org.openhab.binding.plugwiseha.internal.api.models.response.Locations.class);
+                    this.xstream.processAnnotations(
+                            org.openhab.binding.plugwiseha.internal.api.models.response.Location.class);
+                    // this.xstream.addImplicitCollection(Locations.class, "locationList");
+
+                    // this.xstream.processAnnotations(org.openhab.binding.plugwiseha.internal.api.models.response.Locations.class);
+                    // this.xstream.ignoreUnknownElements();
+
+                    String xmlStr = this.xstream.toXML(locationsTest);
+
+                    try {
+                        Object test = this.xstream.fromXML(xmlStr);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    // retVal = (TOut) this.xstream.fromXML(reply);
                 }
             }
         } catch (InterruptedException | ExecutionException e) {

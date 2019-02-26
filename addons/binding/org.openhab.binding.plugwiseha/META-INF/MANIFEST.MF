@@ -3,7 +3,7 @@ Automatic-Module-Name: org.openhab.binding.plugwiseha
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-ManifestVersion: 2
-Bundle-Name: PlugwiseHA Binding
+Bundle-Name: Plugwise HA Binding
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-SymbolicName: org.openhab.binding.plugwiseha;singleton:=true
 Bundle-Vendor: openHAB
@@ -13,6 +13,8 @@ Import-Package:
  com.google.gson.annotations,
  com.thoughtworks.xstream,
  com.thoughtworks.xstream.annotations,
+ com.thoughtworks.xstream.converters,
+ com.thoughtworks.xstream.io,
  com.thoughtworks.xstream.io.xml,
  org.apache.commons.lang,
  org.eclipse.jdt.annotation;resolution:=optional,
@@ -20,10 +22,13 @@ Import-Package:
  org.eclipse.jetty.client.api,
  org.eclipse.jetty.client.util,
  org.eclipse.jetty.http,
+ org.eclipse.jetty.util,
  org.eclipse.jetty.util.component,
  org.eclipse.jetty.util.ssl,
  org.eclipse.smarthome.config.core,
  org.eclipse.smarthome.config.discovery,
+ org.eclipse.smarthome.config.xml,
+ org.eclipse.smarthome.config.xml.util,
  org.eclipse.smarthome.core.library.types,
  org.eclipse.smarthome.core.thing,
  org.eclipse.smarthome.core.thing.binding,
@@ -35,4 +40,3 @@ Import-Package:
  org.osgi.framework,
  org.slf4j
 Service-Component: OSGI-INF/*.xml
-Require-Bundle: org.eclipse.jetty.util

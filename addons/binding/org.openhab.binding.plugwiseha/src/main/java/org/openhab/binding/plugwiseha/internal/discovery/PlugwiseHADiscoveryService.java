@@ -66,21 +66,21 @@ public class PlugwiseHADiscoveryService extends AbstractDiscoveryService impleme
             return;
         }
 
-        for (Location location : bridge.getLocations()) {
+        // for (Location location : bridge.getLocations()) {
 
-            addZoneDiscoveryResult(location);
+        // addZoneDiscoveryResult(location);
 
-            /*
-             * for (Gateway gateway : location.getGateways()) {
-             * for (TemperatureControlSystem tcs : gateway.getTemperatureControlSystems()) {
-             * addDisplayDiscoveryResult(location, tcs);
-             * for (Zone zone : tcs.getZones()) {
-             * addZoneDiscoveryResult(location, zone);
-             * }
-             * }
-             * }
-             */
-        }
+        /*
+         * for (Gateway gateway : location.getGateways()) {
+         * for (TemperatureControlSystem tcs : gateway.getTemperatureControlSystems()) {
+         * addDisplayDiscoveryResult(location, tcs);
+         * for (Zone zone : tcs.getZones()) {
+         * addZoneDiscoveryResult(location, zone);
+         * }
+         * }
+         * }
+         */
+        // }
 
         stopScan();
     }
